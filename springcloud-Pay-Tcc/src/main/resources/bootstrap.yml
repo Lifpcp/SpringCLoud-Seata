@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: spring-cloud-pay-service
+  cloud:
+    nacos:
+      # nacos config
+      config:
+        server-addr: localhost:8848
+        namespace: public
+        group: SEATA_GROUP #这里的 Group 是 SEATA_GROUP ，使用 nacos-config.sh 生成 Nacos 的配置时生成的配置，它的 Group 是 SEATA_GROUP
+      # nacos discovery
+      discovery:
+        server-addr: localhost:8848
+        namespace: public
+        enabled: true
+    alibaba:
+      seata:
+        tx-service-group: ${spring.application.name} #自定义事务组名称需要与seata-server中的对应
+
+
+#不打印nacos心跳日志
+logging:
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: error

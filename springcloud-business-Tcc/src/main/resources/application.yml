@@ -1,0 +1,16 @@
+server:
+  port: 8071
+  tomcat:
+    max-threads: 10
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3333/shop-order?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect

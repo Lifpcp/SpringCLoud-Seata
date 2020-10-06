@@ -1,0 +1,30 @@
+server:
+  port: 8093
+  tomcat:
+    max-threads: 10
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3333/shop-order?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+# ribbon负载均衡器
+service-product: # 调用的提供者的名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+ribbon:
+  ReadTimeout: 5000
+  ConnectTimeout: 5000
+
+
+# 开启feign对sentinel的支持
+feign:
+  sentinel:
+    enabled: true
